@@ -4,9 +4,9 @@ import server.endpoint.DataCollectorPublisher;
 
 /**
  *
- * @author vincent
+ * @author Vincent Van Driessche
  */
-public class StartUp
+public class StartUp //SERVER
 {
     public StartUp()
     {

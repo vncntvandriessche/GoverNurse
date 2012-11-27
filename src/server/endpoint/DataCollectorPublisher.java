@@ -1,22 +1,17 @@
 package server.endpoint;
 
+import generic.configuration.Connection;
 import javax.xml.ws.Endpoint;
-import server.domain.DataCollector;
 
 /**
  *
- * @author vincent
+ * @author Vincent Van Driessche
  */
 public class DataCollectorPublisher
 {
 
-    public static final String PUBLICATION_URL = "http://127.0.0.1";
-    public static final int PORT = 9876;
-    public static final String CHILD = "dataserver";
-    public static final Object INSTANCE = (new DataCollector());
-
     public DataCollectorPublisher()
     {
-        Endpoint.publish((PUBLICATION_URL + ":" + PORT + "/" + CHILD), INSTANCE);
+        Endpoint.publish((Connection.PUBLICATION_URL + ":" + Connection.PORT + "/" + Connection.CHILD), Connection.COLLECTOR_INSTANCE);
     }
 }

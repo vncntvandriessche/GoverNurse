@@ -14,6 +14,7 @@ import javax.jws.soap.SOAPBinding.Style;
 @SOAPBinding(style = Style.RPC)
 public interface IDataCollector
 {
+
     @WebMethod
-    void setClientData( ClientData clientData );
+    void setClientData(ClientData clientData);
 }

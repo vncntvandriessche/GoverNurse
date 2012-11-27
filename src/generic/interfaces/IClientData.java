@@ -2,12 +2,10 @@ package generic.interfaces;
 
 /**
  *
- * @author vincent
+ * @author Vincent Van Driessche
  */
 public interface IClientData
 {
     String getName();
-    
-    @Override
-    String toString();
+    void setName(String name);
 }

@@ -6,7 +6,7 @@ import javax.jws.WebService;
 
 /**
  *
- * @author vincent
+ * @author Vincent Van Driessche
  */
 @WebService(endpointInterface = "generic.interfaces.IDataCollector")
 public class DataCollector implements IDataCollector
@@ -16,7 +16,7 @@ public class DataCollector implements IDataCollector
 
     public void printClientData()
     {
-        System.out.println("Clientdata: " + clientData.toString());
+        System.out.println("Clientdata: " + clientData.getName());
     }
 
     @Override

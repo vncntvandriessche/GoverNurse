@@ -4,15 +4,33 @@ import generic.interfaces.IClientData;
 
 /**
  *
- * @author vincent
+ * @author Vincent Van Driessche
  */
-public class ClientData implements IClientData
+public class ClientData
 {
-
-    @Override
+    
+    private String name;
+    
+    public ClientData()
+    {
+        setName("Hallo daar");
+    }
+    
     public String getName()
     {
-        return "Vincy!";
+        return name;
     }
+
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    @Override
+    public String toString()
+    {
+        return getName();
+    }
+    
     
 }
