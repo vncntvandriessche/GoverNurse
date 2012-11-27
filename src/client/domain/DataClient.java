@@ -5,6 +5,7 @@ import generic.domain.ClientData;
 import generic.interfaces.IDataCollector;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.TreeSet;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
@@ -42,11 +43,28 @@ public class DataClient
 
         Service serviceFactory = Service.create(url, qualifiedNameOfService);
 
-        IDataCollector datacollector = serviceFactory.getPort(IDataCollector.class);
+        collector = serviceFactory.getPort(IDataCollector.class);
     }
     
     public void sendCompleteUpdate()
     {
         collector.setClientData(data);
+    }
+    
+    public String getClientData(){
+        return data.toString();
+    }
+    
+    public void updateClientData(){
+        data = new ClientData();
+    }
+    
+    public void removeClientData(){
+        //verwijdert ClientData van de NETWERK, en niet van DATACLIENT (behalve als wij opteren om beide te doen, maar dat veroorzaakt problemen zoals NullPointerException's)
+        collector.removeClientData(data);
+    }
+    
+    public String getNetwork(){
+        return collector.getClientDataList().toString();
     }
 }
