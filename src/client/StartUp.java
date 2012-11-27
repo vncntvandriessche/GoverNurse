@@ -69,14 +69,17 @@ public class StartUp //CLIENT
             case 5: logOff(); break;
             default: invalidChoice();
         }
+        System.out.println();
     }
 
     private void fullSend() {
         dataClient.sendCompleteUpdate();
+        System.out.println("Data Sent");
     }
     
     private void updateClient(){
         dataClient.updateClientData();
+        viewOwnData();
     }
 
     private void viewOwnData() {
@@ -89,6 +92,7 @@ public class StartUp //CLIENT
 
     private void logOff() {
         dataClient.removeClientData();
+        System.out.println("Logged Off");
         ended = true;
     }
 
