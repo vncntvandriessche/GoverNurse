@@ -45,10 +45,16 @@ public class StartUp //CLIENT
     private int readChoice() {
         BufferedReader choiceReader = new BufferedReader(new InputStreamReader(System.in));
         System.out.print("Please Type Your Choice: ");
+        String input;
         int ret;
         try {
-            ret = choiceReader.read();
-        } catch (IOException ex) {
+            input = choiceReader.readLine();
+        } catch (IOException ioe) {
+            input = "0";
+        }
+        try{
+            ret = Integer.parseInt(input);
+        }catch(NumberFormatException nfe){
             ret = 0;
         }
         return ret;
@@ -56,11 +62,11 @@ public class StartUp //CLIENT
 
     private void performChoice(int option) {
         switch(option){
-            case 49: fullSend(); break;
-            case 50: updateClient(); break;
-            case 51: viewOwnData(); break;
-            case 52: viewNetwork(); break;
-            case 53: logOff(); break;
+            case 1: fullSend(); break;
+            case 2: updateClient(); break;
+            case 3: viewOwnData(); break;
+            case 4: viewNetwork(); break;
+            case 5: logOff(); break;
             default: invalidChoice();
         }
     }
@@ -78,8 +84,7 @@ public class StartUp //CLIENT
     }
 
     private void viewNetwork() {
-        System.out.printf(dataClient.getNetwork());
-        System.out.println();
+        System.out.println(dataClient.getNetwork());
     }
 
     private void logOff() {
