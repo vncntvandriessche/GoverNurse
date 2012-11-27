@@ -6,30 +6,43 @@ import generic.interfaces.IClientData;
  *
  * @author Vincent Van Driessche
  */
-public class ClientData
+public class ClientData implements IClientData
 {
     
-    private String name;
+    private String userName, osName;
     
     public ClientData()
     {
-        setName("Hallo daar");
+        setUserName(System.getProperty("user.name", "Unknown"));
+        setOSName(System.getProperty("os.name", "Unknown") + " (" + System.getProperty("os.version", "") + ")");
     }
     
-    public String getName()
+    @Override
+    public String getUserName()
     {
-        return name;
+        return userName;
     }
 
-    public void setName(String name)
+    @Override
+    public void setUserName(String user)
     {
-        this.name = name;
+        this.userName = user;
     }
 
     @Override
     public String toString()
     {
-        return getName();
+        return getUserName() + ", " + getOSName();
+    }
+
+    @Override
+    public String getOSName() {
+        return osName;
+    }
+
+    @Override
+    public void setOSName(String os) {
+        osName = os;
     }
     
     

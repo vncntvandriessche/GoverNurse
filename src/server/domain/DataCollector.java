@@ -16,7 +16,7 @@ public class DataCollector implements IDataCollector
 
     public void printClientData()
     {
-        System.out.println("Clientdata: " + clientData.getName());
+        System.out.println("Clientdata: " + clientData.toString());
     }
 
     @Override

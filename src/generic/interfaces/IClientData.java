@@ -6,6 +6,8 @@ package generic.interfaces;
  */
 public interface IClientData
 {
-    String getName();
-    void setName(String name);
+    String getUserName();
+    void setUserName(String user);
+    String getOSName();
+    void setOSName(String os);
 }
