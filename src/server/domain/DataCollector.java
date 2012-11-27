@@ -2,6 +2,11 @@ package server.domain;
 
 import generic.domain.ClientData;
 import generic.interfaces.IDataCollector;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import javax.jws.WebService;
 
 /**
@@ -12,17 +17,21 @@ import javax.jws.WebService;
 public class DataCollector implements IDataCollector
 {
 
-    private ClientData clientData;
+    private Set<ClientData> clientData = new TreeSet<ClientData>();
 
     public void printClientData()
     {
-        System.out.println("Clientdata: " + clientData.toString());
+        System.out.println("*****");
+        Iterator<ClientData> iterator = clientData.iterator();
+        while(iterator.hasNext()){
+            System.out.println(iterator.next().toString());
+        }
     }
 
     @Override
     public void setClientData(ClientData clientData)
     {
-        this.clientData = clientData;
+        this.clientData.add(clientData);
         printClientData();
     }
 }

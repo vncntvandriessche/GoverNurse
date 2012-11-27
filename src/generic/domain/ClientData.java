@@ -14,6 +14,7 @@ public class ClientData implements IClientData
     public ClientData()
     {
         setUserName(System.getProperty("user.name", "Unknown"));
+        //setUserName("Edwin");
         setOSName(System.getProperty("os.name", "Unknown") + " (" + System.getProperty("os.version", "") + ")");
     }
     
@@ -44,6 +45,13 @@ public class ClientData implements IClientData
     public void setOSName(String os) {
         osName = os;
     }
+
+    @Override
+    public int compareTo(IClientData clientData) {
+        return userName.compareTo(clientData.getUserName());
+    }
     
-    
+    public boolean equals(IClientData clientData) {
+        return userName.equals(clientData.getUserName());
+    }
 }
