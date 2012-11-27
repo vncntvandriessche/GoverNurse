@@ -1,13 +1,12 @@
 package client.domain;
 
 import generic.configuration.Connection;
+import generic.domain.ClientData;
+import generic.interfaces.IDataCollector;
 import java.net.MalformedURLException;
 import java.net.URL;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
-
-import generic.interfaces.IDataCollector;
-import generic.domain.ClientData;
 
 /**
  *
@@ -15,15 +14,14 @@ import generic.domain.ClientData;
  */
 public class DataClient
 {
+    private ClientData data;
+    private IDataCollector collector;
 
     public DataClient()
     {
-        sendCompleteUpdate();
-    }
-    
-    public void sendCompleteUpdate()
-    {
-                URL url = null;
+        data = new ClientData();
+        
+        URL url = null;
         try
         {
             url = new URL(
@@ -45,6 +43,10 @@ public class DataClient
         Service serviceFactory = Service.create(url, qualifiedNameOfService);
 
         IDataCollector datacollector = serviceFactory.getPort(IDataCollector.class);
-        datacollector.setClientData(new ClientData());
+    }
+    
+    public void sendCompleteUpdate()
+    {
+        collector.setClientData(data);
     }
 }

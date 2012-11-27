@@ -1,7 +1,7 @@
 package generic.interfaces;
 
 import generic.domain.ClientData;
-import java.util.Set;
+import java.util.TreeSet;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
@@ -20,5 +20,5 @@ public interface IDataCollector
     @WebMethod
     void removeClientData(ClientData clientData);
     @WebMethod
-    Set getClientDataList();
+    TreeSet getClientDataList();
 }

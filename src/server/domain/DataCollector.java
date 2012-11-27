@@ -3,7 +3,6 @@ package server.domain;
 import generic.domain.ClientData;
 import generic.interfaces.IDataCollector;
 import java.util.Iterator;
-import java.util.Set;
 import java.util.TreeSet;
 import javax.jws.WebService;
 
@@ -15,7 +14,7 @@ import javax.jws.WebService;
 public class DataCollector implements IDataCollector
 {
 
-    private Set<ClientData> clientData = new TreeSet<ClientData>();
+    private TreeSet<ClientData> clientData = new TreeSet<ClientData>();
 
     private void printClientData()
     {
@@ -40,7 +39,7 @@ public class DataCollector implements IDataCollector
     }
 
     @Override
-    public Set getClientDataList() {
+    public TreeSet getClientDataList() {
         return clientData;
     }
 }
