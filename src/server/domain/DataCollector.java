@@ -2,9 +2,7 @@ package server.domain;
 
 import generic.domain.ClientData;
 import generic.interfaces.IDataCollector;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 import javax.jws.WebService;
@@ -19,7 +17,7 @@ public class DataCollector implements IDataCollector
 
     private Set<ClientData> clientData = new TreeSet<ClientData>();
 
-    public void printClientData()
+    private void printClientData()
     {
         System.out.println("*****");
         Iterator<ClientData> iterator = clientData.iterator();
@@ -33,5 +31,16 @@ public class DataCollector implements IDataCollector
     {
         this.clientData.add(clientData);
         printClientData();
+    }
+
+    @Override
+    public void removeClientData(ClientData clientData) {
+        this.clientData.remove(clientData);
+        printClientData();
+    }
+
+    @Override
+    public Set getClientDataList() {
+        return clientData;
     }
 }
