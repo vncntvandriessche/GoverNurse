@@ -29,6 +29,7 @@ public class DataCollector implements IDataCollector
     @Override
     public void setClientData(ClientData clientData)
     {
+        this.clientData.remove(clientData);
         this.clientData.add(clientData);
         printClientData();
     }
@@ -43,6 +44,8 @@ public class DataCollector implements IDataCollector
     @Override
     public TreeSet<ClientData> getClientDataList()
     {
+        System.out.println("Sending List:");
+        printClientData();
         return clientData;
     }
 }

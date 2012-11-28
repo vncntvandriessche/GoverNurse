@@ -5,6 +5,7 @@ import generic.domain.ClientData;
 import generic.interfaces.IDataCollector;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Iterator;
 import java.util.TreeSet;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
@@ -65,9 +66,15 @@ public class DataClient
     }
     
     public String getNetwork(){
-        TreeSet<ClientData> list = collector.getClientDataList();
-        String ret = list.size() + " clients logged on: ";
-        ret = ret + list.toString();
+        Iterator<ClientData> iterator = collector.getClientDataList().iterator();
+        String ret = "Currently logged on: ";
+        if(!iterator.hasNext()){
+            ret = ret + "No clients are online.";
+        }
+        while (iterator.hasNext())
+        {
+            ret = ret + iterator.next().toString();
+        }
         return ret;
     }
 }

@@ -20,5 +20,5 @@ public interface IDataCollector
     @WebMethod
     void removeClientData(ClientData clientData);
     @WebMethod
-    TreeSet getClientDataList();
+    TreeSet<ClientData> getClientDataList();
 }

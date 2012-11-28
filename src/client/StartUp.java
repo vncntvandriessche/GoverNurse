@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.ws.WebServiceException;
 
 /**
  *
@@ -18,7 +19,13 @@ public class StartUp //CLIENT
     
     public static void main(String[] args)
     {
-        new StartUp();
+        try{
+            new StartUp();
+        }catch(WebServiceException wse){
+            System.out.println("The server could not be found at the expected location.");
+            System.out.println("Make sure the server is online and configured correctly.");
+            System.exit(1);
+        }
     }
     
     public StartUp(){        
@@ -73,7 +80,12 @@ public class StartUp //CLIENT
     }
 
     private void fullSend() {
-        dataClient.sendCompleteUpdate();
+        try{
+            dataClient.sendCompleteUpdate();
+        }catch(WebServiceException wse){
+            System.out.println("The connection with the server was lost.");
+            System.exit(2);
+        }
         System.out.println("Data Sent");
     }
     
@@ -87,7 +99,12 @@ public class StartUp //CLIENT
     }
 
     private void viewNetwork() {
-        System.out.print(dataClient.getNetwork());
+        try{
+            System.out.print(dataClient.getNetwork());
+        }catch(WebServiceException wse){
+            System.out.println("The connection with the server was lost.");
+            System.exit(3);
+        }
     }
 
     private void logOff() {
