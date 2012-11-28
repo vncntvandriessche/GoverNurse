@@ -1,5 +1,6 @@
 package generic.domain;
 
+import generic.domain.Process;
 import generic.interfaces.IClientData;
 import java.util.ArrayList;
 import org.hyperic.sigar.Sigar;
@@ -40,7 +41,7 @@ public class ClientData implements IClientData
     {
         //return getUserName() + ", " + getOSName() + "\n" +;
         String processes = "\nProcessList:";
-        for(generic.domain.Process process : getProcessList())
+        for(Process process : getProcessList())
         {
             processes = processes + String.format("\n%d - %s", process.id, process.name);
         }

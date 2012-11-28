@@ -87,7 +87,7 @@ public class StartUp //CLIENT
     }
 
     private void viewNetwork() {
-        System.out.println(dataClient.getNetwork());
+        System.out.print(dataClient.getNetwork());
     }
 
     private void logOff() {

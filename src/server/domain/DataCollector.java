@@ -41,7 +41,7 @@ public class DataCollector implements IDataCollector
     }
 
     @Override
-    public TreeSet getClientDataList()
+    public TreeSet<ClientData> getClientDataList()
     {
         return clientData;
     }
