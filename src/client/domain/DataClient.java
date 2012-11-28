@@ -67,9 +67,7 @@ public class DataClient
     public String getNetwork(){
         TreeSet<ClientData> list = collector.getClientDataList();
         String ret = list.size() + " clients logged on: ";
-        for (ClientData data : list){
-            ret = ret + "[" + data.toString() + "] ";
-        }
+        ret = ret + list.toString();
         return ret;
     }
 }

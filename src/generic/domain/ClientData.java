@@ -43,7 +43,7 @@ public class ClientData implements IClientData
         String processes = "\nProcessList:";
         for(Process process : getProcessList())
         {
-            processes = processes + String.format("\n%d - %s", process.id, process.name);
+            processes = processes + String.format("\n%d - %s", process.getId(), process.getName());
         }
         return String.format("%s, %s%s", getUserName(), getOSName(), processes);
     }

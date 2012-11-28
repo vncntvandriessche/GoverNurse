@@ -10,8 +10,8 @@ package generic.domain;
  */
 public class Process
 {
-    Long id;
-    String name;
+    private Long id;
+    private String name;
     
     public Process(Long id, String name)
     {
