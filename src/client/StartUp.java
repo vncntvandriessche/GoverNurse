@@ -21,7 +21,7 @@ public class StartUp //CLIENT
         new StartUp();
     }
     
-    public StartUp(){
+    public StartUp(){        
         dataClient = new DataClient();
         
         ended = false;

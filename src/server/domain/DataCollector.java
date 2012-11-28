@@ -20,7 +20,8 @@ public class DataCollector implements IDataCollector
     {
         System.out.println("*****");
         Iterator<ClientData> iterator = clientData.iterator();
-        while(iterator.hasNext()){
+        while (iterator.hasNext())
+        {
             System.out.println(iterator.next().toString());
         }
     }
@@ -33,13 +34,15 @@ public class DataCollector implements IDataCollector
     }
 
     @Override
-    public void removeClientData(ClientData clientData) {
+    public void removeClientData(ClientData clientData)
+    {
         this.clientData.remove(clientData);
         printClientData();
     }
 
     @Override
-    public TreeSet getClientDataList() {
+    public TreeSet getClientDataList()
+    {
         return clientData;
     }
 }
