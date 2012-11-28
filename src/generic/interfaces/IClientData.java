@@ -10,5 +10,5 @@ public interface IClientData extends Comparable<IClientData>
     void setUserName(String user);
     String getOSName();
     void setOSName(String os);
-    void updateProcessList();
+    void setProcessList();
 }

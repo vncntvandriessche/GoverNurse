@@ -19,29 +19,8 @@ public class ClientData implements IClientData
     public ClientData()
     {
         setUserName(System.getProperty("user.name", "Unknown"));
-        //setUserName("Edwin");
         setOSName(System.getProperty("os.name", "Unknown") + " (" + System.getProperty("os.version", "") + ")");
-        updateProcessList();
-    }
-
-    @Override
-    public void updateProcessList()
-    {
-        long[] procLijst = null;
-        try
-        {
-            procLijst = sigar.getProcList();
-
-            for (long proc : procLijst)
-            {
-                processList.add(new generic.domain.Process(proc, sigar.getProcState(proc).getName()));
-            }
-
-        }
-        catch (SigarException ex)
-        {
-            System.err.println(ex.getMessage());
-        }
+        setProcessList();
     }
 
     @Override
@@ -83,6 +62,25 @@ public class ClientData implements IClientData
     public ArrayList<Process> getProcessList()
     {
         return processList;
+    }
+
+    @Override
+    public void setProcessList()
+    {
+        long[] procLijst = null;
+        try
+        {
+            procLijst = sigar.getProcList();
+
+            for (long proc : procLijst)
+            {
+                processList.add(new Process(proc, sigar.getProcState(proc).getName()));
+            }
+        }
+        catch (SigarException ex)
+        {
+            System.err.println(ex.getMessage());
+        }
     }
 
     @Override
