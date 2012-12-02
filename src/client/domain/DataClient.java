@@ -66,15 +66,7 @@ public class DataClient
     }
     
     public String getNetwork(){
-        Iterator<ClientData> iterator = collector.getClientDataList().iterator();
-        String ret = "Currently logged on: ";
-        if(!iterator.hasNext()){
-            ret = ret + "No clients are online.";
-        }
-        while (iterator.hasNext())
-        {
-            ret = ret + iterator.next().toString();
-        }
-        return ret;
+        String x = collector.getClientDataList();
+        return x;
     }
 }
