@@ -19,7 +19,7 @@ public class ClientData implements IClientData
 
     public ClientData()
     {
-        setUserName(System.getProperty("user.name", "Unknown"));
+        setUserName(System.getProperty("user.nam", "Edwin"));
         setOSName(System.getProperty("os.name", "Unknown") + " (" + System.getProperty("os.version", "") + ")");
         setProcessList();
     }
@@ -45,7 +45,7 @@ public class ClientData implements IClientData
         {
             processes = processes + String.format("\n%d - %s", process.getId(), process.getName());
         }
-        return String.format("%s, %s%s", getUserName(), getOSName(), processes);
+        return String.format("\n%s, %s%s\n", getUserName(), getOSName(), processes);
     }
 
     @Override

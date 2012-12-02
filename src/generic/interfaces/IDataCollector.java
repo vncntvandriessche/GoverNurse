@@ -20,5 +20,5 @@ public interface IDataCollector
     @WebMethod
     void removeClientData(ClientData clientData);
     @WebMethod
-    String getClientDataList();
+    ClientData[] getClientDataList();
 }
