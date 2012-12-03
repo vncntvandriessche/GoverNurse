@@ -5,11 +5,8 @@ import generic.domain.ClientData;
 import generic.interfaces.IDataCollector;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
-import java.util.TreeSet;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 

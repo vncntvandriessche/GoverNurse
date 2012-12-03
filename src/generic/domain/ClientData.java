@@ -19,7 +19,7 @@ public class ClientData implements IClientData
 
     public ClientData()
     {
-        setUserName(System.getProperty("user.name", "Unknown"));
+        setUserName(System.getProperty("user.ame", "Unknown"));
         setOSName(System.getProperty("os.name", "Unknown") + " (" + System.getProperty("os.version", "") + ")");
         setProcessList();
     }

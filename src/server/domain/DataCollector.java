@@ -50,14 +50,13 @@ public class DataCollector implements IDataCollector
         printClientData();
         return clientData.toArray(new ClientData[clientData.size()]);
     }
-    
-    @Override
-    public void showRegisteredClients()
+
+    private void showRegisteredClients()
     {
         ClientData[] clientDataList = clientData.toArray(new ClientData[clientData.size()]);
-        
+
         System.out.println("Showing all registered clients");
-        for(ClientData client: clientDataList)
+        for (ClientData client : clientDataList)
         {
             System.out.println(String.format("\n%s - %s", client.getUserName(), client.getOSName()));
         }
