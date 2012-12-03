@@ -2,8 +2,6 @@ package server.domain;
 
 import generic.domain.ClientData;
 import generic.interfaces.IDataCollector;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.TreeSet;
 import javax.jws.WebService;
 
@@ -17,22 +15,13 @@ public class DataCollector implements IDataCollector
 
     private TreeSet<ClientData> clientData = new TreeSet<ClientData>();
 
-    private void printClientData()
-    {
-        Iterator<ClientData> iterator = clientData.iterator();
-        while (iterator.hasNext())
-        {
-            System.out.println(iterator.next().toString());
-        }
-    }
-
     @Override
     public void setClientData(ClientData clientData)
     {
         this.clientData.remove(clientData);
         this.clientData.add(clientData);
         System.out.println("*****");
-        printClientData();
+        showRegisteredClients();
     }
 
     @Override
@@ -40,24 +29,22 @@ public class DataCollector implements IDataCollector
     {
         this.clientData.remove(clientData);
         System.out.println("*****");
-        printClientData();
+        showRegisteredClients();
     }
 
     @Override
     public ClientData[] getClientDataList()
     {
         System.out.println("Sending List:");
-        printClientData();
+        showRegisteredClients();
         return clientData.toArray(new ClientData[clientData.size()]);
     }
     
     @Override
     public void showRegisteredClients()
     {
-        ClientData[] clientDataList = clientData.toArray(new ClientData[clientData.size()]);
-        
         System.out.println("Showing all registered clients");
-        for(ClientData client: clientDataList)
+        for(ClientData client: clientData)
         {
             System.out.println(String.format("\n%s - %s", client.getUserName(), client.getOSName()));
         }
