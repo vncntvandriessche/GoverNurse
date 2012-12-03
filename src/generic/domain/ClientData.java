@@ -2,7 +2,10 @@ package generic.domain;
 
 import generic.domain.Process;
 import generic.interfaces.IClientData;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.util.ArrayList;
+import java.util.Collections;
 import org.hyperic.sigar.Sigar;
 import org.hyperic.sigar.SigarException;
 
@@ -16,12 +19,29 @@ public class ClientData implements IClientData
     private Sigar sigar = new Sigar();
     private String userName, osName;
     private ArrayList<Process> processList = new ArrayList<Process>();
+    private ArrayList<NetworkInterface> macList = new ArrayList<NetworkInterface>();
+
+    public ArrayList<NetworkInterface> setMacList() throws SocketException
+    {
+        return Collections.list(NetworkInterface.getNetworkInterfaces());
+    }
+    
+    public String getOsName()
+    {
+        return osName;
+    }
+
+    public void setOsName(String osName)
+    {
+        this.osName = osName;
+    }
 
     public ClientData()
     {
         setUserName(System.getProperty("user.ame", "Unknown"));
         setOSName(System.getProperty("os.name", "Unknown") + " (" + System.getProperty("os.version", "") + ")");
         setProcessList();
+        //setMacList();
     }
 
     @Override
