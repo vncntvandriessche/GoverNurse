@@ -1,5 +1,6 @@
 package server;
 
+import server.cli.CollectorCli;
 import server.endpoint.DataCollectorPublisher;
 
 /**
@@ -10,8 +11,7 @@ public class StartUp //SERVER
 {
     public StartUp()
     {
-        System.out.println("Publishing dataserver...");
-        new DataCollectorPublisher();
+        new CollectorCli();
     }
     
     public static void main(String[] args)

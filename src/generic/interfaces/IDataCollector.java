@@ -21,4 +21,6 @@ public interface IDataCollector
     void removeClientData(ClientData clientData);
     @WebMethod
     ClientData[] getClientDataList();
+    @WebMethod 
+    void showRegisteredClients();
 }

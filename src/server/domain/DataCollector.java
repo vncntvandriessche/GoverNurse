@@ -2,8 +2,7 @@ package server.domain;
 
 import generic.domain.ClientData;
 import generic.interfaces.IDataCollector;
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.TreeSet;
 import javax.jws.WebService;
@@ -50,5 +49,17 @@ public class DataCollector implements IDataCollector
         System.out.println("Sending List:");
         printClientData();
         return clientData.toArray(new ClientData[clientData.size()]);
+    }
+    
+    @Override
+    public void showRegisteredClients()
+    {
+        ClientData[] clientDataList = clientData.toArray(new ClientData[clientData.size()]);
+        
+        System.out.println("Showing all registered clients");
+        for(ClientData client: clientDataList)
+        {
+            System.out.println(String.format("\n%s - %s", client.getUserName(), client.getOSName()));
+        }
     }
 }
