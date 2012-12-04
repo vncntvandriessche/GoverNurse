@@ -14,10 +14,11 @@ import org.hyperic.sigar.SigarException;
  */
 public class ClientData implements IClientData
 {
-
     private Sigar sigar = new Sigar();
     private String userName, osName;
     private ArrayList<Process> processList = new ArrayList<Process>();
+    
+    // Used as unique identifier immaidentifier
     private ArrayList<String> macList = new ArrayList<String>();
 
     public void setMacList() throws SocketException
