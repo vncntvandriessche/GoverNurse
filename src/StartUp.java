@@ -1,13 +1,10 @@
 
-import java.util.ArrayList;
-
 /**
  *
  * @author Vincent Van Driessche
  */
 public class StartUp
 {
-
     public static final int SERVER = 1;
     public static final int CLIENT = 0;
 
