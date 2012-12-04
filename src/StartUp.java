@@ -31,11 +31,11 @@ public class StartUp
         switch (startNumber)
         {
             case StartUp.CLIENT:
-                printStarting("client");
+                printStarting("Client");
                 new client.StartClient();
                 break;
             case StartUp.SERVER:
-                printStarting("server");
+                printStarting("Server");
                 new server.StartServer();
                 break;
             default:
