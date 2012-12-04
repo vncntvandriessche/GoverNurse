@@ -6,9 +6,9 @@ import server.endpoint.DataCollectorPublisher;
  *
  * @author Vincent Van Driessche
  */
-public class StartUp //SERVER
+public class StartServer //SERVER
 {
-    public StartUp()
+    public StartServer()
     {
         System.out.println("Publishing server...");
         new DataCollectorPublisher();
@@ -16,6 +16,6 @@ public class StartUp //SERVER
     
     public static void main(String[] args)
     {
-        new StartUp();
+        new StartServer();
     }
 }

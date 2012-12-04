@@ -10,7 +10,7 @@ import javax.xml.ws.WebServiceException;
  *
  * @author Vincent Van Driessche
  */
-public class StartUp //CLIENT
+public class StartClient //CLIENT
 {
 
     private DataClient dataClient;
@@ -26,7 +26,7 @@ public class StartUp //CLIENT
         
         try
         {
-            new StartUp();
+            new StartClient();
         }
         catch (WebServiceException wse)
         {
@@ -36,7 +36,7 @@ public class StartUp //CLIENT
         }
     }
 
-    public StartUp()
+    public StartClient()
     {
         dataClient = new DataClient();
 

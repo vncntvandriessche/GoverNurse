@@ -35,11 +35,11 @@ public class StartUp
         {
             case StartUp.CLIENT:
                 printStarting("client");
-                new client.StartUp();
+                new client.StartClient();
                 break;
             case StartUp.SERVER:
                 printStarting("server");
-                new server.StartUp();
+                new server.StartServer();
                 break;
             default:
                 System.err.println("wrong parameter");
