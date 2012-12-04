@@ -4,6 +4,7 @@ import generic.configuration.Connection;
 import generic.domain.ClientData;
 import generic.interfaces.IDataCollector;
 import java.net.MalformedURLException;
+import java.net.SocketException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
@@ -16,13 +17,14 @@ import javax.xml.ws.Service;
  */
 public class DataClient
 {
+
     private ClientData data;
     private IDataCollector collector;
 
     public DataClient()
     {
-        data = new ClientData();
-        
+        updateClientData();
+
         URL url = null;
         try
         {
@@ -46,26 +48,37 @@ public class DataClient
 
         collector = serviceFactory.getPort(IDataCollector.class);
     }
-    
+
     public void sendCompleteUpdate()
     {
         collector.setClientData(data);
     }
-    
-    public String getClientData(){
+
+    public String getClientData()
+    {
         return data.toString();
     }
-    
-    public void updateClientData(){
-        data = new ClientData();
+
+    public void updateClientData()
+    {
+        try
+        {
+            data = new ClientData();
+        }
+        catch (SocketException socketException)
+        {
+            System.err.println("Geen identificatie kunnen ophalen");
+        }
     }
-    
-    public void removeClientData(){
+
+    public void removeClientData()
+    {
         //verwijdert ClientData van de NETWERK, en niet van DATACLIENT (behalve als wij opteren om beide te doen, maar dat veroorzaakt problemen zoals NullPointerException's)
         collector.removeClientData(data);
     }
-    
-    public List<ClientData> getNetwork(){
+
+    public List<ClientData> getNetwork()
+    {
         ClientData[] list = collector.getClientDataList();
         return Arrays.asList(list);
     }

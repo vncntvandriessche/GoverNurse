@@ -22,7 +22,7 @@ public class DataCollector implements IDataCollector
         Iterator<ClientData> iterator = clientData.iterator();
         while (iterator.hasNext())
         {
-            System.out.println(iterator.next().toString());
+            System.out.println(iterator.next().getMacList());
         }
     }
 
