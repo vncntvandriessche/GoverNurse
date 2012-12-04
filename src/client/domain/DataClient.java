@@ -39,6 +39,7 @@ public class DataClient
         catch (MalformedURLException ex)
         {
             System.out.println("**Bad url.");
+            //Throw exception instead?
         }
         QName qualifiedNameOfService = new QName(
                 Connection.QUALIFIED_SERVICE.getLocation(),

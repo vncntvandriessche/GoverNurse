@@ -17,10 +17,17 @@ public class ClientData implements IClientData
     private Sigar sigar = new Sigar();
     private String userName, osName;
     private ArrayList<Process> processList = new ArrayList<Process>();
-    
-    // Used as unique identifier immaidentifier
-    private ArrayList<String> macList = new ArrayList<String>();
+    private final ArrayList<String> macList = new ArrayList<String>();
 
+    public ClientData() throws SocketException
+    {
+        setUserName(System.getProperty("user.name", "Unknown"));
+        setOSName(System.getProperty("os.name", "Unknown") + " (" + System.getProperty("os.version", "") + ")");
+        setProcessList();
+        setMacList();
+    }
+
+    @Override
     public void setMacList() throws SocketException
     {
         ArrayList<NetworkInterface> interfaceList = Collections.list(NetworkInterface.getNetworkInterfaces());
@@ -42,7 +49,7 @@ public class ClientData implements IClientData
         }
     }
 
-    private static String macToString(byte[] mb)
+    private String macToString(byte[] mb)
     {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < mb.length; i++)
@@ -53,6 +60,7 @@ public class ClientData implements IClientData
         if (mac == null)
         {
             mac = "00:00:00:00:00:00";
+            //Throw exception??
         }
         else if (mac.length() > 12)
         {
@@ -68,33 +76,10 @@ public class ClientData implements IClientData
         return mac;
     }
 
+    @Override
     public ArrayList<String> getMacList()
     {
         return macList;
-    }
-
-    public String getOsName()
-    {
-        return osName;
-    }
-
-    public void setOsName(String osName)
-    {
-        this.osName = osName;
-    }
-
-    public ClientData() throws SocketException
-    {
-        setUserName(System.getProperty("user.name", "Unknown"));
-        setOSName(System.getProperty("os.name", "Unknown") + " (" + System.getProperty("os.version", "") + ")");
-        setProcessList();
-        setMacList();
-    }
-
-    @Override
-    public String getUserName()
-    {
-        return userName;
     }
 
     @Override
@@ -104,27 +89,9 @@ public class ClientData implements IClientData
     }
 
     @Override
-    public String toString()
+    public String getUserName()
     {
-        //return getUserName() + ", " + getOSName() + "\n" +;
-        String processes = "\nProcessList:";
-        for (Process process : getProcessList())
-        {
-            processes = processes + String.format("\n%d - %s", process.getId(), process.getName());
-        }
-        
-        String identifier = "";
-        for(String currentMac : macList)
-        {
-            identifier = String.format("%s-%s", identifier, currentMac);
-        }
-        return String.format("*******%s: %s********\n%s, %s%s\n", "Identifier", identifier,getUserName(), getOSName(), processes);
-    }
-
-    @Override
-    public String getOSName()
-    {
-        return osName;
+        return userName;
     }
 
     @Override
@@ -133,9 +100,10 @@ public class ClientData implements IClientData
         osName = os;
     }
 
-    public ArrayList<Process> getProcessList()
+    @Override
+    public String getOSName()
     {
-        return processList;
+        return osName;
     }
 
     @Override
@@ -155,6 +123,30 @@ public class ClientData implements IClientData
         {
             System.err.println(ex.getMessage());
         }
+    }
+
+    @Override
+    public ArrayList<Process> getProcessList()
+    {
+        return processList;
+    }
+
+    @Override
+    public String toString()
+    {
+        //return getUserName() + ", " + getOSName() + "\n" +;
+        String processes = "\nProcessList:";
+        for (Process process : getProcessList())
+        {
+            processes = processes + String.format("\n%d - %s", process.getId(), process.getName());
+        }
+        
+        String identifier = "";
+        for(String currentMac : macList)
+        {
+            identifier = String.format("%s-%s", identifier, currentMac);
+        }
+        return String.format("*******%s: %s********\n%s, %s%s\n", "Identifier", identifier,getUserName(), getOSName(), processes);
     }
 
     @Override
