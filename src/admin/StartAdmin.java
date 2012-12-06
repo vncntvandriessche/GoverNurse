@@ -97,9 +97,6 @@ public class StartAdmin //ADMIN
     private void getTaskCommander() {
         try {
             Registry registry = LocateRegistry.getRegistry(Connection.SERVER_IP);
-            for (String s : registry.list()) {
-                System.out.println("Found services: " + s);
-            }
             taskCommander = (ITaskCommander) (registry.lookup("TaskCommander"));
         } catch (RemoteException e) {
             System.err.println(e);

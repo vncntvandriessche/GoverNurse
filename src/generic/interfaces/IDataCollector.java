@@ -13,7 +13,7 @@ import javax.jws.soap.SOAPBinding.Style;
  */
 @WebService
 @SOAPBinding(style = Style.RPC)
-public interface IDataCollector extends Remote
+public interface IDataCollector
 {
     @WebMethod
     void setClientData(ClientData clientData);
