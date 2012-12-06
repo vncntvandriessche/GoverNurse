@@ -1,9 +1,8 @@
 package server;
 
-import java.io.IOException;
-import java.net.BindException;
-import java.net.SocketException;
 import server.endpoint.DataCollectorPublisher;
+import server.rmi.CommandServer;
+import server.rmi.TaskClient;
 
 /**
  *
@@ -14,12 +13,14 @@ public class StartServer //SERVER
     public StartServer()
     {
         System.out.println("Publishing server...");
-        try{
+        try {
             new DataCollectorPublisher();
-        }catch(Exception be){
+        } catch(Exception be) {
             System.out.println("The server already seems to be running (Or a different service is using the resources needed).");
             System.exit(4);
         }
+        new CommandServer();
+        new TaskClient();
     }
     
     public static void main(String[] args)

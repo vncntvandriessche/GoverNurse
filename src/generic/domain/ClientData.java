@@ -4,7 +4,10 @@ import generic.interfaces.IClientData;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+
+import org.hyperic.sigar.NetInterfaceConfig;
 import org.hyperic.sigar.Sigar;
 import org.hyperic.sigar.SigarException;
 
@@ -15,7 +18,7 @@ import org.hyperic.sigar.SigarException;
 public class ClientData implements IClientData
 {
     private Sigar sigar = new Sigar();
-    private String userName, osName;
+    private String userName, osName, ip;
     private ArrayList<Process> processList = new ArrayList<Process>();
     private final ArrayList<String> macList = new ArrayList<String>();
 
@@ -25,6 +28,7 @@ public class ClientData implements IClientData
         setOSName(System.getProperty("os.name", "Unknown") + " (" + System.getProperty("os.version", "") + ")");
         setProcessList();
         setMacList();
+        setRemoteAddress();
     }
 
     @Override
@@ -129,6 +133,20 @@ public class ClientData implements IClientData
     public ArrayList<Process> getProcessList()
     {
         return processList;
+    }
+
+    @Override
+    public void setRemoteAddress() {
+        try {
+            ip = sigar.getNetInterfaceConfig().getAddress();
+        } catch (SigarException e) {
+            ip = "127.0.0.1";
+        }
+    }
+
+    @Override
+    public String getRemoteAddress() {
+        return ip;
     }
 
     @Override

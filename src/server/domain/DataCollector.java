@@ -2,7 +2,9 @@ package server.domain;
 
 import generic.domain.ClientData;
 import generic.interfaces.IDataCollector;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.SortedSet;
 import java.util.TreeSet;
 import javax.jws.WebService;
 
@@ -14,7 +16,7 @@ import javax.jws.WebService;
 public class DataCollector implements IDataCollector
 {
 
-    private TreeSet<ClientData> clientData = new TreeSet<ClientData>();
+    private SortedSet<ClientData> clientData = Collections.synchronizedSortedSet(new TreeSet<ClientData>());
 
     private void printClientData()
     {
@@ -48,6 +50,10 @@ public class DataCollector implements IDataCollector
         System.out.println("Sending List:");
         showRegisteredClients();
         return clientData.toArray(new ClientData[clientData.size()]);
+    }
+    
+    public SortedSet<ClientData> getClientDataSet() {
+        return clientData;
     }
 
     private void showRegisteredClients()

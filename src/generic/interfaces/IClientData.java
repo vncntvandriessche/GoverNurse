@@ -14,8 +14,10 @@ public interface IClientData extends Comparable<IClientData>
     void setUserName(String user);
     String getOSName();
     void setOSName(String os);
-    void setProcessList();
     ArrayList<Process> getProcessList();
+    void setProcessList();
     ArrayList<String> getMacList();
     void setMacList() throws SocketException;
+    String getRemoteAddress();
+    void setRemoteAddress();
 }
