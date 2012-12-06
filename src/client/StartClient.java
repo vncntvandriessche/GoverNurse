@@ -69,7 +69,7 @@ public class StartClient //CLIENT
         int ret;
         try
         {
-            input = choiceReader.readLine();
+            input = choiceReader.readLine().trim();
         }
         catch (IOException ioe)
         {
