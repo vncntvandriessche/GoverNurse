@@ -1,13 +1,18 @@
-
 /**
- *
- * @author Vincent Van Driessche
+ * Universal startup file.
+ * @author
  */
 public class StartUp
 {
     public static final int SERVER = 1;
     public static final int CLIENT = 0;
 
+    /**
+     * Start the program.
+     * @param args : The parameters with which the program can be started.
+     * --type 0 = Client
+     * --type 1 = Server
+     */
     public static void main(String[] args)
     {
         int startValue = -1;
@@ -26,7 +31,11 @@ public class StartUp
         new StartUp(startValue);
     }
 
-    public StartUp(int startNumber)
+    /**
+     * Carries out the execution of the server or client.
+     * @param startNumber : defines whether the server or client is started.
+     */
+    private StartUp(int startNumber)
     {
         switch (startNumber)
         {
@@ -43,6 +52,10 @@ public class StartUp
         }
     }
     
+    /**
+     * Displays which part of the program was started.
+     * @param applicationName : The name of the service that was executed.
+     */
     private void printStarting(String applicationName)
     {
         System.out.println(String.format("Starting %s...", applicationName));

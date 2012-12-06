@@ -7,16 +7,20 @@ import java.io.InputStreamReader;
 import javax.xml.ws.WebServiceException;
 
 /**
- *
- * @author Vincent Van Driessche
+ * Client startup file.
+ * @author 
  */
-public class StartClient //CLIENT
+public class StartClient
 {
 
     private DataClient dataClient;
     private boolean ended;
 
-    public static void main(String[] args)
+    /**
+     * Starts an instance of the client program.
+     * @param args : No parameters are used.
+     */
+    /*public static void main(String[] args)
     {
         //Threadpool
         //DataClient thread (beter StartUp, want dan behouden wij de huidige CLI)
@@ -34,8 +38,11 @@ public class StartClient //CLIENT
             System.out.println("Make sure the server is online and configured correctly.");
             System.exit(1);
         }
-    }
+    }*/
 
+    /**
+     * Creates the client instance.
+     */
     public StartClient()
     {
         dataClient = new DataClient();
@@ -52,6 +59,9 @@ public class StartClient //CLIENT
         System.exit(0);
     }
 
+    /**
+     * Displays the valid choices to be made by the client in the standard output.
+     */
     private void displayOptions()
     {
         System.out.println("1: Send Client Information");
@@ -61,6 +71,10 @@ public class StartClient //CLIENT
         System.out.println("5: Log Off and Exit");
     }
 
+    /**
+     * Requests input from the user to define the operation to be carried out by the client.
+     * @return : The number representing the choice made by the user.
+     */
     private int readChoice()
     {
         BufferedReader choiceReader = new BufferedReader(new InputStreamReader(System.in));
@@ -86,6 +100,10 @@ public class StartClient //CLIENT
         return ret;
     }
 
+    /**
+     * Executes the choice made by the client.
+     * @param option : The number representing the choice to be executed.
+     */
     private void performChoice(int option)
     {
         switch (option)
@@ -111,6 +129,9 @@ public class StartClient //CLIENT
         System.out.println();
     }
 
+    /**
+     * Sends an entire copy of the clientdata to the server.
+     */
     private void fullSend()
     {
         try
@@ -125,17 +146,26 @@ public class StartClient //CLIENT
         System.out.println("Data Sent");
     }
 
+    /**
+     * Updates the clientdata to the latest available from the system.
+     */
     private void updateClient()
     {
         dataClient.updateClientData();
         viewOwnData();
     }
 
+    /**
+     * Prints the data that has been or will be sent to the server in a human-readable format.
+     */
     private void viewOwnData()
     {
         System.out.println(dataClient.getClientData());
     }
 
+    /**
+     * Prints all the clientdata currently logged on to the server in a human-readable format.
+     */
     private void viewNetwork()
     {
         try
@@ -149,6 +179,9 @@ public class StartClient //CLIENT
         }
     }
 
+    /**
+     * removes the clientdata from the server and exits this instance.
+     */
     private void logOff()
     {
         dataClient.removeClientData();
@@ -156,6 +189,9 @@ public class StartClient //CLIENT
         ended = true;
     }
 
+    /**
+     * Informs the user when an invalid choice was made.
+     */
     private void invalidChoice()
     {
         System.out.println("Your choice wasn't recognised.");

@@ -12,8 +12,8 @@ import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
 /**
- *
- * @author Vincent Van Driessche
+ * Connects to the server endpoint and calls upon the resource when requested.
+ * @author 
  */
 public class DataClient
 {
@@ -21,6 +21,9 @@ public class DataClient
     private ClientData data;
     private IDataCollector collector;
 
+    /**
+     * Creates a new instance of this class, setting up the necessary resources.
+     */
     public DataClient()
     {
         updateClientData();
@@ -50,6 +53,9 @@ public class DataClient
         collector = serviceFactory.getPort(IDataCollector.class);
     }
 
+    /**
+     * 
+     */
     public void sendCompleteUpdate()
     {
         collector.setClientData(data);
