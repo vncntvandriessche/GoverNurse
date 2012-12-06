@@ -4,8 +4,9 @@
  */
 public class StartUp
 {
-    public static final int SERVER = 1;
     public static final int CLIENT = 0;
+    public static final int SERVER = 1;
+    public static final int ADMIN = 2;
 
     /**
      * Start the program.
@@ -47,6 +48,9 @@ public class StartUp
                 printStarting("Server");
                 new server.StartServer();
                 break;
+            case StartUp.ADMIN:
+                printStarting("Admin");
+                new admin.StartAdmin();
             default:
                 System.err.println("wrong parameter");
         }
