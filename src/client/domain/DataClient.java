@@ -54,18 +54,25 @@ public class DataClient
     }
 
     /**
-     * 
+     * Sends a complete copy of a client's data to the server.
      */
     public void sendCompleteUpdate()
     {
         collector.setClientData(data);
     }
 
+    /**
+     * Makes a human-readable representation of the client's data.
+     * @return : The human readable version of the client's data.
+     */
     public String getClientData()
     {
         return data.toString();
     }
 
+    /**
+     * Creates a new representation of the client's data, with up-to-date information.
+     */
     public void updateClientData()
     {
         try
@@ -78,12 +85,19 @@ public class DataClient
         }
     }
 
+    /**
+     * Deletes the client's information from the server.
+     */
     public void removeClientData()
     {
         //verwijdert ClientData van de NETWERK, en niet van DATACLIENT (behalve als wij opteren om beide te doen, maar dat veroorzaakt problemen zoals NullPointerException's)
         collector.removeClientData(data);
     }
 
+    /**
+     * Requests a list of information for clients who are currently logged in to the network.
+     * @return : A List of all the currently-logged-on clients. 
+     */
     public List<ClientData> getNetwork()
     {
         ClientData[] list = collector.getClientDataList();
