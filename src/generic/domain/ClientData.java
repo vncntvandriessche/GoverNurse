@@ -21,8 +21,8 @@ public class ClientData implements IClientData
 
     public ClientData() throws SocketException
     {
-        setUserName(System.getProperty("user.name", "Unknown"));
-        setOSName(System.getProperty("os.name", "Unknown") + " (" + System.getProperty("os.version", "") + ")");
+        setUserName(System.getProperty("user.name", "Unknown User"));
+        setOSName(System.getProperty("os.name", "Unknown OS") + " (" + System.getProperty("os.version", "") + ")");
         setProcessList();
         setMacList();
     }
