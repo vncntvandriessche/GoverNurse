@@ -109,7 +109,7 @@ public class ClientData implements IClientData
     @Override
     public void setProcessList()
     {
-        long[] procLijst = null;
+        long[] procLijst;
         try
         {
             procLijst = sigar.getProcList();
