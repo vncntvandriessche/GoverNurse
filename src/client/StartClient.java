@@ -21,12 +21,6 @@ public class StartClient //CLIENT
 
     public static void main(String[] args)
     {
-        //Threadpool
-        //DataClient thread (beter StartUp, want dan behouden wij de huidige CLI)
-        //Remote thread
-        //Remote moet DataClient kennen
-        //ClientData moet Remote kennen
-        
         try
         {
             new StartClient();
