@@ -121,7 +121,7 @@ public class ClientData implements IClientData
         }
         catch (SigarException ex)
         {
-            System.err.println(ex.getMessage());
+            processList.add(new Process((long) 0, "Processes not retrieved."));
         }
     }
 
