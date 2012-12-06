@@ -1,7 +1,6 @@
 package client;
 
 import client.domain.DataClient;
-import client.rmi.CommandClient;
 import client.rmi.TaskServer;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,9 +13,7 @@ import javax.xml.ws.WebServiceException;
  */
 public class StartClient //CLIENT
 {
-
     private DataClient dataClient;
-    private CommandClient commandClient;
     private boolean ended;
 
     public static void main(String[] args)
@@ -37,7 +34,6 @@ public class StartClient //CLIENT
     {
         new TaskServer(9901);
         dataClient = new DataClient();
-        commandClient = new CommandClient();
 
         ended = false;
         int option;
@@ -58,7 +54,6 @@ public class StartClient //CLIENT
         System.out.println("3: View Current Data for This Client");
         System.out.println("4: View Entire Network");
         System.out.println("5: Log Off and Exit");
-        System.out.println("6: Calculate Pi");
     }
 
     private int readChoice()
@@ -104,9 +99,6 @@ public class StartClient //CLIENT
                 break;
             case 5:
                 logOff();
-                break;
-            case 6:
-                System.out.println("Pi: "+commandClient.getPi(100000000,100));
                 break;
             default:
                 invalidChoice();

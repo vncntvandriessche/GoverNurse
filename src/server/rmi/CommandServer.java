@@ -1,12 +1,14 @@
 package server.rmi;
 
 import client.rmi.MathSolver;
+import generic.configuration.Connection;
 
 import java.rmi.AccessException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import server.domain.DataCollector;
 
 /**
  *

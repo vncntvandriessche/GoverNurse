@@ -1,20 +1,23 @@
 package admin;
 
-import client.*;
-import client.domain.DataClient;
 import generic.configuration.Connection;
 import generic.domain.ClientData;
 import generic.interfaces.IDataCollector;
+import generic.interfaces.ITaskCommander;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.ListIterator;
+import javax.xml.namespace.QName;
+import javax.xml.ws.Service;
 import javax.xml.ws.WebServiceException;
 
 /**
@@ -24,8 +27,9 @@ import javax.xml.ws.WebServiceException;
 public class StartAdmin //ADMIN
 {
 
-    private boolean ended;
+    private boolean ended;   
     private IDataCollector dataCollector;
+    private ITaskCommander taskCommander;
     private List<ClientData> clientList;
 
     public static void main(String[] args) {
@@ -45,18 +49,8 @@ public class StartAdmin //ADMIN
     }
 
     public StartAdmin() {
-        String serverAddress = Connection.PUBLICATION_URL;
-        try {
-            Registry registry = LocateRegistry.getRegistry(serverAddress);
-            for (String s : registry.list()) {
-                System.out.println("Found service: " + s);
-            }
-            dataCollector = (IDataCollector) (registry.lookup("DataCollector"));
-        } catch (RemoteException e) {
-            System.err.println(e);
-        } catch (NotBoundException e) {
-            System.err.println(e);
-        }
+        getDataCollector();
+        getTaskCommander();
 
         ended = false;
         int option;
@@ -69,6 +63,7 @@ public class StartAdmin //ADMIN
     }
 
     private void displayOptions() {
+        System.out.println("-------GoverNurse Admin App-------");
         System.out.println("---------------MENU---------------");
         System.out.println("1: View clients");
         System.out.println("2: Get specific client information");
@@ -76,12 +71,50 @@ public class StartAdmin //ADMIN
         System.out.println("4: Log Off and Exit");
     }
 
+    private void getDataCollector() {
+        URL url = null;
+        try {
+            url = new URL(
+                    Connection.PUBLICATION_URL
+                    + ":"
+                    + Connection.PORT
+                    + "/"
+                    + Connection.CHILD
+                    + Connection.PARAM);
+        } catch (MalformedURLException ex) {
+            System.out.println("**Bad url.");
+            //Throw exception instead?
+        }
+        QName qualifiedNameOfService = new QName(
+                Connection.QUALIFIED_SERVICE.getLocation(),
+                Connection.QUALIFIED_SERVICE.getName());
+
+        Service serviceFactory = Service.create(url, qualifiedNameOfService);
+
+        dataCollector = serviceFactory.getPort(IDataCollector.class);
+    }
+    
+    private void getTaskCommander() {
+        try {
+            Registry registry = LocateRegistry.getRegistry(Connection.SERVER_IP);
+            for (String s : registry.list()) {
+                System.out.println("Found services: " + s);
+            }
+            taskCommander = (ITaskCommander) (registry.lookup("TaskCommander"));
+        } catch (RemoteException e) {
+            System.err.println(e);
+        } catch (NotBoundException e) {
+            System.err.println(e);
+        }
+    }
+        
     private int readChoice(boolean client) {
         BufferedReader choiceReader = new BufferedReader(new InputStreamReader(System.in));
-        if (!client)
+        if (!client) {
             System.out.println("Please make a choice from the menu:");
-        else
+        } else {
             System.out.println("Please pick a clientnumber:");
+        }
         String input;
         int ret;
         try {
@@ -119,8 +152,15 @@ public class StartAdmin //ADMIN
 
     private void viewNetwork() {
         try {
+            System.out.println("---------List of Clients----------");
             clientList = Arrays.asList(dataCollector.getClientDataList());
-            System.out.print(clientList);
+            ListIterator iterator = clientList.listIterator();
+            int i = 1;
+            while (iterator.hasNext()){
+                ClientData data = (ClientData)iterator.next();
+                System.out.printf("%d : %s", i, data.getUserName()+" - "+data.getOSName());
+                i++;
+            }
         } catch (WebServiceException wse) {
             System.out.println("The connection with the server was lost.");
             System.exit(3);
@@ -128,13 +168,21 @@ public class StartAdmin //ADMIN
     }
 
     private void getClientInfo() {
-        int id = readChoice(true);
+        int id = 0;
+        do{
+            id = readChoice(true) - 1;
+        }while (id < 0 || id >= clientList.size());
+        
         ClientData client = clientList.get(id);
         System.out.println(client.toString());
     }
 
     private void executeJob() {
-        throw new UnsupportedOperationException("Not yet implemented");
+        try {
+            System.out.println("Pi: " + taskCommander.getPi(100000000, 100));
+        } catch (RemoteException e) {
+            System.err.println(e);
+        }
     }
 
     private void logOff() {

@@ -2,6 +2,9 @@ package server.domain;
 
 import generic.domain.ClientData;
 import generic.interfaces.IDataCollector;
+import generic.interfaces.ITaskCommander;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.SortedSet;
@@ -15,7 +18,6 @@ import javax.jws.WebService;
 @WebService(endpointInterface = "generic.interfaces.IDataCollector")
 public class DataCollector implements IDataCollector
 {
-
     private SortedSet<ClientData> clientData = Collections.synchronizedSortedSet(new TreeSet<ClientData>());
 
     private void printClientData()
