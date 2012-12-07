@@ -11,4 +11,5 @@ import java.rmi.RemoteException;
 
 public interface IMathSolver extends Remote {
     BigDecimal getPi(Integer cycles, Integer scale) throws RemoteException;
+    void forceUpdate() throws RemoteException;
 }

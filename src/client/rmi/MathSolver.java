@@ -1,5 +1,6 @@
 package client.rmi;
 
+import client.domain.DataClient;
 import generic.interfaces.IMathSolver;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -12,8 +13,15 @@ import java.rmi.server.UnicastRemoteObject;
  */
 public class MathSolver extends UnicastRemoteObject implements IMathSolver {
 
+    DataClient client;
+
     protected MathSolver() throws RemoteException {
         super();
+    }
+    
+    protected MathSolver(DataClient client) throws RemoteException{
+        super();
+        this.client = client;
     }
     
     @Override
@@ -30,5 +38,11 @@ public class MathSolver extends UnicastRemoteObject implements IMathSolver {
             plus = !plus;
         }
         return pi;
+    }
+    
+    @Override
+    public void forceUpdate() throws RemoteException{
+        client.updateClientData();
+        client.sendCompleteUpdate();
     }
 }

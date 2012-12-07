@@ -10,4 +10,5 @@ import java.rmi.RemoteException;
  */
 public interface ITaskCommander extends Remote {
     BigDecimal getPi(Integer cycles, Integer scale) throws RemoteException;
+    void forceUpdate() throws RemoteException;
 }

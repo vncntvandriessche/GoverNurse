@@ -68,7 +68,8 @@ public class StartAdmin //ADMIN
         System.out.println("1: View clients");
         System.out.println("2: Get specific client information");
         System.out.println("3: Execute a job remotely");
-        System.out.println("4: Log Off and Exit");
+        System.out.println("4: Force an update");
+        System.out.println("5: Log Off and Exit");
     }
 
     private void getDataCollector() {
@@ -139,6 +140,9 @@ public class StartAdmin //ADMIN
                 executeJob();
                 break;
             case 4:
+                forceUpdate();
+                break;
+            case 5:
                 logOff();
                 break;
             default:
@@ -179,6 +183,14 @@ public class StartAdmin //ADMIN
             System.out.println("Pi: " + taskCommander.getPi(100000000, 100));
         } catch (RemoteException e) {
             System.err.println(e);
+        }
+    }
+    
+    private void forceUpdate() {
+        try{
+            taskCommander.forceUpdate();
+        }catch(RemoteException re){
+            System.err.println(re);
         }
     }
 

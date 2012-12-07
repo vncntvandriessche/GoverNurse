@@ -32,8 +32,8 @@ public class StartClient //CLIENT
 
     public StartClient()
     {
-        new TaskServer(9901);
         dataClient = new DataClient();
+        new TaskServer(9901, dataClient);
 
         ended = false;
         int option;

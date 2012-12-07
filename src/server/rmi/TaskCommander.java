@@ -53,4 +53,19 @@ public class TaskCommander extends UnicastRemoteObject implements ITaskCommander
         }
         return ip;
     }
+
+    @Override
+    public void forceUpdate() throws RemoteException {
+        String serverAddress = getBestClientAddress();
+        int port = 9901;
+        try {
+            Registry registry = LocateRegistry.getRegistry(serverAddress, port);
+            IMathSolver mathServer = (IMathSolver)(registry.lookup("MathSolver"));
+            mathServer.forceUpdate();
+        } catch(RemoteException e){
+            System.err.println(e);
+        } catch(NotBoundException e){
+            System.err.println(e);
+        }
+    }
 }
