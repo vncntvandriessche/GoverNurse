@@ -33,7 +33,16 @@ public class StartClient //CLIENT
     public StartClient()
     {
         new TaskServer(9901);
-        dataClient = new DataClient();
+        
+        try
+        {
+            dataClient = new DataClient();
+        }
+        catch(WebServiceException webServiceException)
+        {
+            System.out.println("The server could not be found at the expected location. Make sure the server is online and configured correctly.");
+            System.exit(-1);
+        }
 
         ended = false;
         int option;

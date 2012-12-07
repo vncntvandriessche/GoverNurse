@@ -3,18 +3,22 @@
  *
  * @author Vincent Van Driessche
  */
-public class StartUp {
+public class StartUp
+{
 
     public static final int SERVER = 0;
     public static final int CLIENT = 1;
     public static final int ADMIN = 2;
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         int startValue = -1;
         boolean isNext = false;
 
-        for (String currentArg : args) {
-            if (isNext) {
+        for (String currentArg : args)
+        {
+            if (isNext)
+            {
                 startValue = Integer.parseInt(currentArg);
                 break;
             }
@@ -24,8 +28,10 @@ public class StartUp {
         new StartUp(startValue);
     }
 
-    public StartUp(int startNumber) {
-        switch (startNumber) {
+    public StartUp(int startNumber)
+    {
+        switch (startNumber)
+        {
             case StartUp.SERVER:
                 printStarting("Server");
                 new server.StartServer();
@@ -44,7 +50,8 @@ public class StartUp {
         }
     }
 
-    private void printStarting(String applicationName) {
+    private void printStarting(String applicationName)
+    {
         System.out.println(String.format("Starting %s...", applicationName));
     }
 }
